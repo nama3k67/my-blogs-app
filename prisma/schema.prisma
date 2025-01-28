@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model blogs {
+  id         Int          @id @default(autoincrement())
+  title      String       @db.VarChar(255)
+  slug       String       @unique
+  content    String
+  userid     Int
+  createdat  DateTime?    @default(now()) @db.Timestamp(6)
+  updatedat  DateTime?    @default(now()) @db.Timestamp(6)
+  users      users        @relation(fields: [userid], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  blogs_tags blogs_tags[]
+  comments   comments[]
+}
+
+model blogs_tags {
+  blogid Int
+  tagid  Int
+  blogs  blogs @relation(fields: [blogid], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  tags   tags  @relation(fields: [tagid], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([blogid, tagid])
+}
+
+model categories {
+  id   Int    @id @default(autoincrement())
+  name String @unique @db.VarChar(100)
+}
+
+model comments {
+  id        Int       @id @default(autoincrement())
+  content   String
+  userid    Int
+  blogid    Int
+  createdat DateTime? @default(now()) @db.Timestamp(6)
+  updatedat DateTime? @default(now()) @db.Timestamp(6)
+  blogs     blogs     @relation(fields: [blogid], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users     users     @relation(fields: [userid], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model tags {
+  id         Int          @id @default(autoincrement())
+  name       String       @unique @db.VarChar(100)
+  blogs_tags blogs_tags[]
+}
+
+model users {
+  id           Int        @id @default(autoincrement())
+  username     String     @unique @db.VarChar(50)
+  email        String     @unique @db.VarChar(100)
+  passwordhash String
+  createdat    DateTime?  @default(now()) @db.Timestamp(6)
+  blogs        blogs[]
+  comments     comments[]
+}
