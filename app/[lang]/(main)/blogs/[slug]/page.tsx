@@ -1,4 +1,5 @@
 import { BlogDetails } from "@/components/blog/details";
+import { getBlogDetails, getBlogs } from "@/services/api/blog.service";
 
 interface Params {
   params: Promise<{ slug: string }>;
@@ -7,21 +8,16 @@ interface Params {
 export default async function BlogDetailsPage({ params }: Params) {
   const { slug } = await params;
 
-  const blog = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/blogs/${slug}`
-  ).then((res) => res.json());
+  const blog = await getBlogDetails(slug);
 
   return (
     <div>
-      <BlogDetails content={blog.content} />
+      <BlogDetails content={blog?.content} />
     </div>
   );
 }
 
 export async function generateStaticParams() {
-  const blogs = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/blogs`
-  ).then((res) => res.json());
-
+  const blogs = await getBlogs();
   return blogs;
 }

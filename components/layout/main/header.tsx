@@ -6,8 +6,13 @@ import useHeader from "@/shared/hooks/useHeader";
 import DesktopNavbar from "./navbar/desktop";
 import MobileNavbar from "./navbar/mobile";
 import ThemeToggle from "./themToggle";
+import { getDictionary } from "@/get-dictionary";
 
-const Header: React.FC = () => {
+type Props = {
+ dictionary: Awaited<ReturnType<typeof getDictionary>>
+};
+
+const Header: React.FC<Props> = ({ dictionary }: Props) => {
   const { isHomePage, avatarRef, headerRef } = useHeader();
 
   return (
@@ -90,7 +95,7 @@ const Header: React.FC = () => {
               </div>
               <div className="flex flex-1 justify-end md:justify-center">
                 <MobileNavbar className="pointer-events-auto md:hidden" />
-                <DesktopNavbar className="pointer-events-auto hidden md:block" />
+                <DesktopNavbar dictionary={dictionary}  className="pointer-events-auto hidden md:block" />
               </div>
               <div className="flex justify-end md:flex-1">
                 <div className="pointer-events-auto">
