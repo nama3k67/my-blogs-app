@@ -108,7 +108,7 @@ export function LoginForm({
                             href="#"
                             className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                           >
-                            Forgot your password?
+                            {dictionary.log_in.forgot_password}
                           </Link>
                         </div>
                         <FormControl>

@@ -7,7 +7,8 @@
   "log_in": {
     "title": "Đăng nhập",
     "description": "Đăng nhập để bình luận, tương tác và đọc những bài viết mới nhất!",
-    "have_account": "Chưa có tài khoản?"
+    "have_account": "Chưa có tài khoản?",
+    "forgot_password": "Quên mật khẩu?"
   },
   "form": {
     "email": "Email",
