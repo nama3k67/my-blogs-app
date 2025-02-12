@@ -1,8 +1,37 @@
 {
+  "sign_up": {
+    "title": "Sign Up",
+    "description": "Sign up for an account to comment, interact, and create your own posts!",
+    "have_account": "Already have an account?"
+  },
+  "log_in": {
+    "title": "Log In",
+    "description": "Log in to comment, interact, and read the latest posts!",
+    "have_account": "Don't have an account?"
+  },
+  "form": {
+    "email": "Email",
+    "username": "User Name",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "submit": "Submit"
+  },
   "navigation": {
     "home": "Home",
     "blogs": "Blogs",
     "about": "About",
     "contact": "Contact"
+  },
+  "error": {
+    "404": "Page not found",
+    "500": "Internal server error",
+    "email_or_password_invalid": "Email or password is invalid",
+    "email_required": "Email is required",
+    "email_invalid": "Email is invalid",
+    "username_required": "Username is required",
+    "password_required": "Password is required",
+    "password_min_length": "Password must be at least 8 characters long",
+    "confirm_password_required": "Confirm password is required",
+    "confirm_password_not_match": "Confirm password does not match the password"
   }
 }

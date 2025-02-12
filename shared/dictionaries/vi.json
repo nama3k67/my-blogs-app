@@ -1,8 +1,37 @@
 {
+  "sign_up": {
+    "title": "Đăng ký",
+    "description": "Đăng ký tài khoản để bình luận, tương tác và tạo những bài viết của riêng mình nhe!",
+    "have_account": "Đã có tài khoản?"
+  },
+  "log_in": {
+    "title": "Đăng nhập",
+    "description": "Đăng nhập để bình luận, tương tác và đọc những bài viết mới nhất!",
+    "have_account": "Chưa có tài khoản?"
+  },
+  "form": {
+    "email": "Email",
+    "username": "Tên tài khoản",
+    "password": "Mật khẩu",
+    "confirm_password": "Xác nhận mật khẩu",
+    "submit": "Gửi"
+  },
   "navigation": {
     "home": "Trang chủ",
     "blogs": "Bài viết",
     "about": "Giới thiệu",
     "contact": "Liên hệ"
+  },
+  "error": {
+    "404": "Không tìm thấy trang",
+    "500": "Lỗi máy chủ nội bộ",
+    "email_or_password_invalid": "Email hoặc mật khẩu không hợp lệ",
+    "email_required": "Email is required",
+    "email_invalid": "Email không hợp lệ",
+    "username_required": "Tên người dùng là bắt buộc",
+    "password_required": "Mật khẩu là bắt buộc",
+    "password_min_length": "Mật khẩu phải có ít nhất 8 ký tự",
+    "confirm_password_required": "Xác nhận mật khẩu là bắt buộc",
+    "confirm_password_not_match": "Xác nhận mật khẩu không khớp với mật khẩu"
   }
 }
