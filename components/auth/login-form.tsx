@@ -1,6 +1,10 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { AlertCircle, Loader2 } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 import { handleLogin } from "@/actions/auth";
 import { Button } from "@/components/ui/button";
@@ -12,15 +16,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
-import { LoginResponse } from "@/shared/types/auth/login.type";
 import { useTranslation } from "@/providers/translation.provider";
-import Link from "next/link";
 import { ROUTES } from "@/shared/constants";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
+import { LoginResponse } from "@/shared/types/auth/login.type";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import {
   Form,
   FormControl,
@@ -29,8 +30,6 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import { AlertCircle, Loader2 } from "lucide-react";
-import { Alert, AlertTitle, AlertDescription } from "../ui/alert";
 
 const initialState: LoginResponse = {
   success: false,
