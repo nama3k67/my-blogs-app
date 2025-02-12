@@ -53,11 +53,20 @@ model tags {
 }
 
 model users {
-  id           Int        @id @default(autoincrement())
-  username     String     @unique @db.VarChar(50)
-  email        String     @unique @db.VarChar(100)
+  id           Int         @id @default(autoincrement())
+  username     String      @unique @db.VarChar(50)
+  email        String      @unique @db.VarChar(100)
   passwordhash String
-  createdat    DateTime?  @default(now()) @db.Timestamp(6)
+  createdat    DateTime?   @default(now()) @db.Timestamp(6)
   blogs        blogs[]
   comments     comments[]
+  tokens       userToken[] // relation to tokens
+}
+
+model userToken {
+  id        Int      @id @default(autoincrement())
+  token     String
+  userid    Int
+  expiresAt DateTime
+  user      users    @relation(fields: [userid], references: [id])
 }
