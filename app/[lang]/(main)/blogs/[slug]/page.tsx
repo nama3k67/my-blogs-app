@@ -1,5 +1,5 @@
 import { BlogDetails } from "@/components/blog/details";
-import { getBlogDetails, getBlogs } from "@/services/api/blog.service";
+import { getBlogDetails, getBlogs } from "@/services/actions/blog.action";
 
 interface Params {
   params: Promise<{ slug: string }>;
@@ -12,7 +12,7 @@ export default async function BlogDetailsPage({ params }: Params) {
 
   return (
     <div>
-      <BlogDetails content={blog?.content} />
+      <BlogDetails content={blog?.content || ""} />
     </div>
   );
 }

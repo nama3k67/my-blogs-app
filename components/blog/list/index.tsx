@@ -1,6 +1,6 @@
-import { getBlogs } from "@/services/api/blog.service";
 import { BlogItem as BlogItemType } from "@/shared/types/blog";
 import { BlogItem } from "./item";
+import { getBlogs } from "@/services/actions/blog.action";
 
 export const BlogList = async () => {
   const data = await getBlogs();
