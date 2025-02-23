@@ -3,68 +3,35 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
+import { handleAsyncAction } from "@/lib/async";
+import { storeCookies } from "@/lib/cookie";
 import { login, signup } from "@/services/actions/auth.action";
-import { ROUTES } from "@/shared/constants";
+import { ROUTES, TOKEN } from "@/shared/constants";
 import { LoginData } from "@/shared/types/auth/login.type";
 import { SignupData } from "@/shared/types/auth/signup.type";
 
-async function storeCookies(accessToken: string, refreshToken: string) {
-  const cookieStore = await cookies();
-  cookieStore.set("accessToken", accessToken, {
-    httpOnly: true,
-    sameSite: "strict",
-    secure: process.env.NODE_ENV === "production",
-    maxAge: 60 * 60,
-  });
-
-  cookieStore.set("refreshToken", refreshToken, {
-    httpOnly: true,
-    sameSite: "strict",
-    secure: process.env.NODE_ENV === "production",
-    maxAge: 60 * 60 * 24 * 7,
-  });
-}
-
 export async function handleLogin(data: LoginData) {
-  try {
+  return handleAsyncAction(async () => {
     const { accessToken, refreshToken } = await login(data);
 
     await storeCookies(accessToken, refreshToken);
-  } catch (error: unknown) {
-    let errorMessage = "An unknown error occurred";
-    if (error instanceof Error) {
-      errorMessage = error.message;
-    }
-    return {
-      success: false,
-      message: errorMessage,
-      errors: {},
-    };
-  }
-  redirect(ROUTES.HOME);
+    redirect(ROUTES.PUBLIC.BLOG_LIST);
+  });
 }
 
 export async function handleSignUp(data: SignupData) {
-  try {
+  return handleAsyncAction(async () => {
     const { accessToken, refreshToken } = await signup(data);
 
     await storeCookies(accessToken, refreshToken);
-  } catch (error: unknown) {
-    let errorMessage = "An unknown error occurred";
-    if (error instanceof Error) {
-      errorMessage = error.message;
-    }
-    return {
-      success: false,
-      message: errorMessage,
-      errors: {},
-    };
-  }
-  redirect(ROUTES.HOME);
+    redirect(ROUTES.PUBLIC.BLOG_LIST);
+  });
 }
 
 export async function handleLogout() {
-  const cookieStore = await cookies();
-  cookieStore.delete("accessToken").delete("refreshToken");
-  redirect(ROUTES.LOGIN);
+  return handleAsyncAction(async () => {
+    const cookieStore = await cookies();
+    cookieStore.delete(TOKEN.ACCESS).delete(TOKEN.REFRESH);
+    redirect(ROUTES.PUBLIC.LOGIN);
+  });
 }

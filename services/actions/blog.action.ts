@@ -1,11 +1,14 @@
-import { BlogItem } from "@/shared/types/blog";
 import { PrismaClient } from "@prisma/client";
+
+import { slugify } from "@/lib/utils";
+import { BlogItem } from "@/shared/types/blog";
+import { BlogRecreateRequest } from "../type/blog.type";
 
 const prisma = new PrismaClient();
 
 export async function getBlogs() {
   const data = await prisma.blogs.findMany();
-  const blogs : BlogItem[] = data.map((blog) => {
+  const blogs: BlogItem[] = data.map((blog) => {
     return {
       title: blog.title,
       slug: blog.slug,
@@ -15,7 +18,7 @@ export async function getBlogs() {
     };
   });
 
-  return blogs;;
+  return blogs;
 }
 
 export async function getBlogDetails(slug: string) {
@@ -25,4 +28,19 @@ export async function getBlogDetails(slug: string) {
     },
   });
   return data;
+}
+
+export async function createBlog(data: BlogRecreateRequest) {
+  const slug = slugify(data.title);
+
+  const blog = await prisma.blogs.create({
+    data: {
+      title: data.title,
+      content: data.content,
+      userid: data.userId,
+      slug,
+    },
+  });
+
+  return blog;
 }

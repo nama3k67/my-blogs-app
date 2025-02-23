@@ -1,45 +1,14 @@
 "use server";
 
+import { PrismaClient } from "@prisma/client";
 import { compare, hash } from "bcrypt";
-import { sign } from "jsonwebtoken";
 
+import { Tokens } from "@/shared/types/auth";
 import { LoginData } from "@/shared/types/auth/login.type";
 import { SignupData } from "@/shared/types/auth/signup.type";
-import { PrismaClient } from "@prisma/client";
-
-export type Tokens = {
-  accessToken: string;
-  refreshToken: string;
-};
+import { generateTokens } from "@/lib/dal";
 
 const prisma = new PrismaClient();
-
-// Separate a function to generate tokens
-async function generateTokens(userId: number, email: string): Promise<Tokens> {
-  const tokenPayload = { userId, email };
-  const accessToken = sign(tokenPayload, process.env.JWT_SECRET as string, {
-    expiresIn: "1h",
-  });
-
-  const refreshToken = sign(
-    tokenPayload,
-    process.env.JWT_REFRESH_SECRET as string,
-    { expiresIn: "7d" }
-  );
-
-  await prisma.userToken.create({
-    data: {
-      token: refreshToken,
-      userid: userId,
-      expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-    },
-  });
-
-  return {
-    accessToken,
-    refreshToken,
-  };
-}
 
 export async function login(data: LoginData): Promise<Tokens> {
   const user = await prisma.users.findUnique({
@@ -56,7 +25,7 @@ export async function login(data: LoginData): Promise<Tokens> {
     throw new Error("Invalid password");
   }
 
-  return generateTokens(user.id, user.email);
+  return generateTokens({ userId: user.id, email: user.email });
 }
 
 export async function signup(data: SignupData): Promise<Tokens> {
@@ -75,5 +44,5 @@ export async function signup(data: SignupData): Promise<Tokens> {
     throw new Error("User not created");
   }
 
-  return generateTokens(createdUser.id, createdUser.email);
+  return generateTokens({ userId: createdUser.id, email: createdUser.email });
 }
