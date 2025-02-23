@@ -11,7 +11,7 @@ export const BlogItem = ({ item }: Props) => {
   return (
     <article className="md:grid md:grid-cols-4 md:items-baseline">
       <Card className="md:col-span-3">
-        <Card.Title href={`${ROUTES.BLOGS.LIST}/${item.slug}`}>
+        <Card.Title href={`${ROUTES.PUBLIC.BLOG_LIST}/${item.slug}`}>
           {item.title}
         </Card.Title>
 

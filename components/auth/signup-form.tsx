@@ -157,7 +157,7 @@ export function SignupForm({
               <div className="mt-4 text-center text-sm">
                 {dictionary.sign_up.have_account}{" "}
                 <Link
-                  href={ROUTES.LOGIN}
+                  href={ROUTES.PUBLIC.LOGIN}
                   className="underline underline-offset-4"
                 >
                   {dictionary.log_in.title}

@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { ROUTES } from "../constants";
 
 const useHeader = () => {
-  const isHomePage = usePathname() === ROUTES.HOME;
+  const isHomePage = usePathname() === ROUTES.PUBLIC.HOME;
 
   const headerRef = useRef<HTMLDivElement>(null);
   const avatarRef = useRef<HTMLDivElement>(null);
