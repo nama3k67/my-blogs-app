@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Roboto } from "next/font/google";
 
 import "./globals.css";
 
-import { ThemeProvider } from "@/providers/theme.provider";
-import { Locale } from "@/i18n-config";
 import { getDictionary } from "@/get-dictionary";
+import { Locale } from "@/i18n-config";
+import { verify } from "@/lib/dal";
+import { AuthProvider } from "@/providers/auth.provider";
+import { ThemeProvider } from "@/providers/theme.provider";
 import { TranslationProvider } from "@/providers/translation.provider";
+import { getAuth } from "@/actions/user";
+import { UserDetails } from "@/shared/types/user";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,6 +20,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const roboto = Roboto({
+  weight: ["400", "500", "700"],
+  subsets: ["vietnamese", "latin-ext"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -32,15 +42,23 @@ export default async function RootLayout({
 }>) {
   const { lang } = await params;
   const dictionary = await getDictionary(lang);
+  const { isAuth, userId } = await verify();
+  let user: UserDetails | null | undefined = null;
+
+  if (userId) {
+    user = (await getAuth(userId)).data;
+  }
 
   return (
     <html lang="en" className="h-full antialiased" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex h-full bg-zinc-50 dark:bg-black`}
+        className={`${geistSans.variable} ${geistMono.variable} ${roboto.className} antialiased flex h-full bg-zinc-50 dark:bg-black`}
       >
         <ThemeProvider>
           <TranslationProvider lang={lang} dictionary={dictionary}>
-            {children}
+            <AuthProvider isAuthenticated={isAuth} user={user}>
+              {children}
+            </AuthProvider>
           </TranslationProvider>
         </ThemeProvider>
       </body>

@@ -1,8 +1,9 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertCircle, Loader2 } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -20,7 +21,6 @@ import { cn } from "@/lib/utils";
 import { useTranslation } from "@/providers/translation.provider";
 import { ROUTES } from "@/shared/constants";
 import { LoginResponse } from "@/shared/types/auth/login.type";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import {
   Form,
@@ -47,6 +47,7 @@ export function LoginForm({
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
   const [LoginResponse, setLoginResponse] = useState(initialState);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
   const { dictionary } = useTranslation();
   const form = useForm<z.infer<typeof formSchema>>({
@@ -58,8 +59,15 @@ export function LoginForm({
   });
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    console.log('test');
     const response = await handleLogin(data);
     setLoginResponse(response);
+    
+    if (response.success) {
+      form.reset();
+    } else {
+      passwordRef.current?.focus();
+    }
   };
 
   return (
@@ -112,7 +120,7 @@ export function LoginForm({
                           </Link>
                         </div>
                         <FormControl>
-                          <Input type="password" {...field} />
+                          <Input type="password" {...field} ref={passwordRef} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -139,7 +147,7 @@ export function LoginForm({
               <div className="mt-4 text-center text-sm">
                 {dictionary.log_in.have_account}{" "}
                 <Link
-                  href={ROUTES.SIGNUP}
+                  href={ROUTES.PUBLIC.SIGNUP}
                   className="underline underline-offset-4"
                 >
                   {dictionary.sign_up.title}

@@ -8,7 +8,13 @@ export async function handleAsyncAction<T>(
   asyncFunction: () => Promise<T>,
   needsAuth = true
 ): Promise<
-  T | { success: false; message: string; errors: Record<string, unknown> }
+  | T
+  | {
+      success: false;
+      data?: never;
+      message: string;
+      errors: Record<string, unknown>;
+    }
 > {
   try {
     if (needsAuth) {
