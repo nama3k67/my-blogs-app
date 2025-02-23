@@ -65,7 +65,7 @@ model users {
 
 model userToken {
   id        Int      @id @default(autoincrement())
-  token     String
+  token     String   @unique
   userid    Int
   expiresAt DateTime
   user      users    @relation(fields: [userid], references: [id])
