@@ -1,4 +1,10 @@
 {
+  "metadata": {
+    "title": "Blog",
+    "description": "A blog about technology, programming, and web development.",
+    "author": "Nam Tran",
+    "keywords": "blog, technology, programming, web development"
+  },
   "sign_up": {
     "title": "Sign Up",
     "description": "Sign up for an account to comment, interact, and create your own posts!",

@@ -1,4 +1,10 @@
 {
+  "metadata": {
+    "title": "Blog",
+    "description": "Một blog về công nghệ, lập trình và phát triển web.",
+    "author": "Nam Trần",
+    "keywords": "blog, công nghệ, lập trình, phát triển web"
+  },
   "sign_up": {
     "title": "Đăng ký",
     "description": "Đăng ký tài khoản để bình luận, tương tác và tạo những bài viết của riêng mình nhe!",
