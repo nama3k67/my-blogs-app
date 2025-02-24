@@ -1,10 +1,8 @@
-import { PrismaClient } from "@prisma/client";
-
-import { slugify } from "@/lib/utils";
+import prisma from "@/shared/libs/prisma";
 import { BlogItem } from "@/shared/types/blog";
-import { BlogRecreateRequest } from "../type/blog.type";
+import { slugify } from "@/shared/utils/common";
 
-const prisma = new PrismaClient();
+import { BlogRecreateRequest } from "../type/blog.type";
 
 export async function getBlogs() {
   const data = await prisma.blogs.findMany();

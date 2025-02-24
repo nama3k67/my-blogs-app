@@ -1,5 +1,5 @@
 import { Card } from "@/components/shared/card";
-import { formatDate } from "@/lib/date";
+import { formatDate } from "@/shared/utils/date";
 import { ROUTES } from "@/shared/constants";
 import { BlogItem as BlogItemType } from "@/shared/types/blog";
 

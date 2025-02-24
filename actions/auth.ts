@@ -3,7 +3,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-import { storeCookies } from "@/lib/cookie";
+import { storeCookies } from "@/shared/utils/cookie";
 import { login, signup } from "@/services/actions/auth.action";
 import { ROUTES, TOKEN } from "@/shared/constants";
 import { LoginData } from "@/shared/types/auth/login.type";

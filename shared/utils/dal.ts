@@ -1,6 +1,6 @@
 import "server-only";
 
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/shared/libs/prisma";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { cache } from "react";
@@ -8,8 +8,6 @@ import { cache } from "react";
 import { TOKEN } from "@/shared/constants";
 import { TokenPayload, Tokens } from "@/shared/types/auth";
 import { storeCookies } from "./cookie";
-
-const prisma = new PrismaClient();
 
 const jwtSecret = process.env.JWT_SECRET;
 const jwtRefreshSecret = process.env.JWT_REFRESH_SECRET;

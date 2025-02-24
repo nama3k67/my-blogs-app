@@ -1,8 +1,6 @@
-import { slugify } from "@/lib/utils";
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/shared/libs/prisma";
+import { slugify } from "@/shared/utils/common";
 import { NextResponse } from "next/server";
-
-const prisma = new PrismaClient();
 
 export async function GET(): Promise<NextResponse> {
   const blogs = await prisma.blogs.findMany();

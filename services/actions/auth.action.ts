@@ -1,14 +1,12 @@
 "use server";
 
-import { PrismaClient } from "@prisma/client";
 import { compare, hash } from "bcrypt";
 
 import { Tokens } from "@/shared/types/auth";
 import { LoginData } from "@/shared/types/auth/login.type";
 import { SignupData } from "@/shared/types/auth/signup.type";
-import { generateTokens } from "@/lib/dal";
-
-const prisma = new PrismaClient();
+import { generateTokens } from "@/shared/utils/dal";
+import prisma from "@/shared/libs/prisma";
 
 export async function login(data: LoginData): Promise<Tokens> {
   const user = await prisma.users.findUnique({

@@ -1,4 +1,4 @@
-import { handleAsyncAction } from "@/lib/async";
+import { handleAsyncAction } from "@/shared/utils/async";
 import { getUser } from "@/services/actions/user.action";
 
 export async function getAuth(userId: number) {
