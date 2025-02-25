@@ -40,5 +40,10 @@
     "password_min_length": "Mật khẩu phải có ít nhất 8 ký tự",
     "confirm_password_required": "Xác nhận mật khẩu là bắt buộc",
     "confirm_password_not_match": "Xác nhận mật khẩu không khớp với mật khẩu"
+  },
+  "locale_switcher": {
+    "placeholder": "Chọn ngôn ngữ",
+    "en": "Tiếng Anh",
+    "vi": "Tiếng Việt"
   }
 }

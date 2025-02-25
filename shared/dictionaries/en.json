@@ -40,5 +40,10 @@
     "password_min_length": "Password must be at least 8 characters long",
     "confirm_password_required": "Confirm password is required",
     "confirm_password_not_match": "Confirm password does not match the password"
+  },
+  "locale_switcher": {
+    "placeholder": "Select a language",
+    "en": "English",
+    "vi": "Vietnamese"
   }
 }
