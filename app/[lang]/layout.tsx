@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 
-import "./globals.css";
+import "../globals.css";
 
 import { getAuth } from "@/actions/user";
 import { getDictionary } from "@/get-dictionary";
-import { Locale } from "@/i18n-config";
+import { i18n, Locale } from "@/i18n-config";
 import { verify } from "@/shared/utils/dal";
 import { AuthProvider } from "@/providers/auth.provider";
 import { ThemeProvider } from "@/providers/theme.provider";
@@ -51,7 +51,7 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
+    <html lang={i18n.defaultLocale} className="h-full antialiased" suppressHydrationWarning>
       <body
         className={`${roboto.className} antialiased flex h-full bg-zinc-50 dark:bg-black`}
       >

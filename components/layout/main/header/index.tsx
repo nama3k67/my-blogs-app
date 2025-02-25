@@ -1,7 +1,6 @@
 "use client";
 
 import { ChevronDown } from "lucide-react";
-// import Link from "next/link";
 
 import BlogCreate from "@/components/blog/create";
 import { Container } from "@/components/shared/container";
@@ -17,7 +16,7 @@ import {
 import { handleLogout } from "@/actions/auth";
 import { getDictionary } from "@/get-dictionary";
 import { useAuth } from "@/providers/auth.provider";
-// import { ROUTES } from "@/shared/constants";
+import LocaleSwitcher from "@/components/shared/local-switcher";
 import useHeader from "@/shared/hooks/useHeader";
 
 import DesktopNavbar from "../navbar/desktop";
@@ -66,18 +65,6 @@ const Header: React.FC<Props> = ({ dictionary }: Props) => {
                     <AvatarImage src="/avatar.jpg" />
                     <AvatarFallback>NT</AvatarFallback>
                   </Avatar>
-                  {/* <AvatarContainer
-                          className="absolute left-0 top-3 origin-left transition-opacity"
-                          style={{
-                            opacity: "var(--avatar-border-opacity, 0)",
-                            transform: "var(--avatar-border-transform)",
-                          }}
-                        />
-                        <Avatar
-                          large
-                          className="block h-16 w-16 origin-left"
-                          style={{ transform: "var(--avatar-image-transform)" }}
-                        /> */}
                 </div>
               </div>
             </Container>
@@ -105,9 +92,6 @@ const Header: React.FC<Props> = ({ dictionary }: Props) => {
                     <AvatarImage src="/avatar1.jpg" />
                     <AvatarFallback>NT</AvatarFallback>
                   </Avatar>
-                  // <AvatarContainer>
-                  //   <Avatar />
-                  // </AvatarContainer>
                 )}
               </div>
               <div className="flex justify-end md:justify-center">
@@ -117,7 +101,11 @@ const Header: React.FC<Props> = ({ dictionary }: Props) => {
                   className="pointer-events-auto hidden md:block"
                 />
               </div>
-              <div className="flex justify-end md:flex-1">
+              <div className="flex justify-end items-center md:flex-1">
+                <div className="pointer-events-auto">
+                  <LocaleSwitcher />
+                </div>
+
                 <div className="pointer-events-auto">
                   <ThemeToggle />
                 </div>
@@ -163,7 +151,6 @@ const Header: React.FC<Props> = ({ dictionary }: Props) => {
             </div>
           </Container>
         </div>
-
       </header>
       {isHomePage && (
         <div
