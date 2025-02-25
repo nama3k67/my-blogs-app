@@ -1,5 +1,5 @@
 import prisma from "@/shared/libs/prisma";
-import { slugify } from "@/shared/utils/common";
+import { slugify } from "@/shared/libs/utils";
 import { NextResponse } from "next/server";
 
 export async function GET(): Promise<NextResponse> {

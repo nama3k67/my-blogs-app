@@ -17,7 +17,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/shared/utils/common";
+import { cn } from "@/shared/libs/utils";
 import { useTranslation } from "@/providers/translation.provider";
 import { ROUTES } from "@/shared/constants";
 import { LoginResponse } from "@/shared/types/auth/login.type";

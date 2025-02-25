@@ -1,6 +1,6 @@
 import prisma from "@/shared/libs/prisma";
 import { BlogItem } from "@/shared/types/blog";
-import { slugify } from "@/shared/utils/common";
+import { slugify } from "@/shared/libs/utils";
 
 import { BlogRecreateRequest } from "../type/blog.type";
 
