@@ -1,5 +1,5 @@
 import ReactMarkdown from "react-markdown";
-
+import remarkBreaks from "remark-breaks";
 import markdownStyles from "./style.module.css";
 
 type Props = {
@@ -7,10 +7,15 @@ type Props = {
 };
 
 export function BlogDetails({ content }: Props) {
+  const processedContent = content.replace(/\\n/g, "\n");
+
   return (
     <div className="max-w-2xl mx-auto">
-      <ReactMarkdown className={markdownStyles.markdown}>
-        {content}
+      <ReactMarkdown
+        remarkPlugins={[remarkBreaks]}
+        className={markdownStyles.markdown}
+      >
+        {processedContent}
       </ReactMarkdown>
     </div>
   );

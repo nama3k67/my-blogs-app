@@ -5,16 +5,21 @@ interface Params {
   params: Promise<{ slug: string }>;
 }
 
-export default async function BlogDetailsPage({ params }: Params) {
+export async function generateMetadata({ params }: Params) {
   const { slug } = await params;
-
   const blog = await getBlogDetails(slug);
 
-  return (
-    <div>
-      <BlogDetails content={blog?.content || ""} />
-    </div>
-  );
+  return {
+    title: blog?.title,
+    description: blog?.description,
+  };
+}
+
+export default async function BlogDetailsPage({ params }: Params) {
+  const { slug } = await params;
+  const blog = await getBlogDetails(slug);
+
+  return <BlogDetails content={blog?.content || ""} />;
 }
 
 export async function generateStaticParams() {
