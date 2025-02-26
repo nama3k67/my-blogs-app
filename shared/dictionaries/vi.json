@@ -5,6 +5,19 @@
     "author": "Nam Trần",
     "keywords": "blog, công nghệ, lập trình, phát triển web"
   },
+  "home": {
+    "title": "Trang chủ",
+    "description": "Lập trình viên, người yêu chạy và thích du lịch.",
+    "introduction": "Chào mừng bạn đến với blog của tôi! Tôi là Nam Trần, một lập trình viên, người yêu chạy và thích du lịch. Tôi viết về công nghệ, thể thao và du lịch. Hãy thoải mái khám phá blog của tôi và để lại những bình luận về những bài viết bạn thấy thú vị. Chúc bạn đọc vui vẻ!"
+  },
+  "resume": {
+    "title": "Công việc & Học vấn",
+    "company": "Công ty",
+    "role": "Vị trí",
+    "date": "Ngày",
+    "until": "đến",
+    "download": "Tải xuống CV"
+  },
   "sign_up": {
     "title": "Đăng ký",
     "description": "Đăng ký tài khoản để bình luận, tương tác và tạo những bài viết của riêng mình nhe!",

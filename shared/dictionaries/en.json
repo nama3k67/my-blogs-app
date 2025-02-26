@@ -1,9 +1,22 @@
 {
   "metadata": {
     "title": "Blog",
-    "description": "A blog about technology, programming, and web development.",
+    "description": "Blogs about technology, sport, and travel.",
     "author": "Nam Tran",
-    "keywords": "blog, technology, programming, web development"
+    "keywords": "blog, technology, sport, travel"
+  },
+  "home": {
+    "title": "Home",
+    "description": "Software engineer, runner, and travel enthusiast.",
+    "introduction": "Welcome to my blog! I'm Nam Tran, a software engineer, runner, and travel enthusiast. I write about technology, sport, and travel. Feel free to explore my blog and leave comments on the posts you find interesting. Enjoy reading!"
+  },
+  "resume": {
+    "title": "Work & Education",
+    "company": "Company",
+    "role": "Role",
+    "date": "Date",
+    "until": "until",
+    "download": "Download CV"
   },
   "sign_up": {
     "title": "Sign Up",
