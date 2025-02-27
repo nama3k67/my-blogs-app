@@ -8,7 +8,8 @@
   "home": {
     "title": "Home",
     "description": "Software engineer, runner, and travel enthusiast.",
-    "introduction": "Welcome to my blog! I'm Nam Tran, a software engineer, runner, and travel enthusiast. I write about technology, sport, and travel. Feel free to explore my blog and leave comments on the posts you find interesting. Enjoy reading!"
+    "introduction": "Welcome to my blog! I'm Nam Tran, a software engineer, runner, and travel enthusiast. I write about technology, sport, and travel. Feel free to explore my blog and leave comments on the posts you find interesting. Enjoy reading!",
+    "read_article": "Read article"
   },
   "resume": {
     "title": "Work & Education",
