@@ -8,17 +8,15 @@ datasource db {
 }
 
 model blogs {
-  id          Int          @id @default(autoincrement())
-  title       String       @db.VarChar(255)
-  slug        String       @unique
-  content     String
-  userid      Int
-  createdat   DateTime?    @default(now()) @db.Timestamp(6)
-  updatedat   DateTime?    @default(now()) @db.Timestamp(6)
-  description String?
-  users       users        @relation(fields: [userid], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  blogs_tags  blogs_tags[]
-  comments    comments[]
+  id         Int          @id @default(autoincrement())
+  userid     Int
+  createdat  DateTime?    @default(now()) @db.Timestamp(6)
+  updatedat  DateTime?    @default(now()) @db.Timestamp(6)
+  users      users        @relation(fields: [userid], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  blogs_tags blogs_tags[]
+  comments   comments[]
+
+  blog_translations blog_translations[]
 }
 
 model blogs_tags {
@@ -69,4 +67,25 @@ model userToken {
   userid    Int
   expiresAt DateTime
   user      users    @relation(fields: [userid], references: [id])
+}
+
+model languages {
+  id               Int                 @id @default(autoincrement())
+  code             String              @unique @db.VarChar(10)
+  name             String              @db.VarChar(50)
+  blog_translations blog_translations[]
+}
+
+model blog_translations {
+  id          Int       @id @default(autoincrement())
+  blogid      Int
+  languageid  Int
+  title       String    @db.VarChar(255)
+  slug        String    @unique
+  content     String
+  description String?
+  blogs       blogs     @relation(fields: [blogid], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  languages   languages @relation(fields: [languageid], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([blogid, languageid])
 }
