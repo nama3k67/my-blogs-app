@@ -12,7 +12,6 @@ import {
   SelectItem,
   SelectTrigger,
 } from "../ui/select";
-import { Button } from "../ui/button";
 
 export default function LocaleSwitcher() {
   const pathname = usePathname();
@@ -30,13 +29,11 @@ export default function LocaleSwitcher() {
 
   return (
     <Select defaultValue={lang} onValueChange={onLocaleChange}>
-      <SelectTrigger showIcon={false} className="border-none shadow-none">
-        <Button variant="ghost" size="icon" className="rounded-full">
-          <Globe
-            strokeWidth={1.6}
-            className="!size-[22px] stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:stroke-white/90 [@media(prefers-color-scheme:dark)]:fill-teal-50 [@media(prefers-color-scheme:dark)]:stroke-teal-500 [@media(prefers-color-scheme:dark)]:group-hover:fill-teal-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-teal-600"
-          />
-        </Button>
+      <SelectTrigger showIcon={false} className="border-none shadow-none w-fit hover:bg-accent hover:text-accent-foreground rounded-full ">
+        <Globe
+          strokeWidth={1.6}
+          className= "!size-6 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:stroke-white/90 [@media(prefers-color-scheme:dark)]:fill-teal-50 [@media(prefers-color-scheme:dark)]:stroke-teal-500 [@media(prefers-color-scheme:dark)]:group-hover:fill-teal-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-teal-600"
+        />
       </SelectTrigger>
 
       <SelectContent align="end">
