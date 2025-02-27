@@ -1,9 +1,11 @@
 "use client";
 
+import clsx from "clsx";
 import { ChevronDown } from "lucide-react";
 
 import BlogCreate from "@/components/blog/create";
 import { Container } from "@/components/shared/container";
+import LocaleSwitcher from "@/components/shared/local-switcher";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,7 +18,6 @@ import {
 import { handleLogout } from "@/actions/auth";
 import { getDictionary } from "@/get-dictionary";
 import { useAuth } from "@/providers/auth.provider";
-import LocaleSwitcher from "@/components/shared/local-switcher";
 import useHeader from "@/shared/hooks/useHeader";
 
 import DesktopNavbar from "../navbar/desktop";
@@ -26,6 +27,21 @@ import ThemeToggle from "../themToggle";
 type Props = {
   dictionary: Awaited<ReturnType<typeof getDictionary>>;
 };
+
+function AvatarContainer({
+  className,
+  ...props
+}: React.ComponentPropsWithoutRef<"div">) {
+  return (
+    <div
+      className={clsx(
+        className,
+        "h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10"
+      )}
+      {...props}
+    />
+  );
+}
 
 const Header: React.FC<Props> = ({ dictionary }: Props) => {
   const { isHomePage, avatarRef, headerRef } = useHeader();
@@ -61,7 +77,17 @@ const Header: React.FC<Props> = ({ dictionary }: Props) => {
                 }}
               >
                 <div className="relative">
-                  <Avatar>
+                  <AvatarContainer
+                    className="absolute left-0 top-3 origin-left transition-opacity"
+                    style={{
+                      opacity: "var(--avatar-border-opacity, 0)",
+                      transform: "var(--avatar-border-transform)",
+                    }}
+                  />
+                  <Avatar
+                    className="block h-16 w-16 origin-left"
+                    style={{ transform: "var(--avatar-image-transform)" }}
+                  >
                     <AvatarImage src="/avatar.jpg" />
                     <AvatarFallback>NT</AvatarFallback>
                   </Avatar>
@@ -95,14 +121,17 @@ const Header: React.FC<Props> = ({ dictionary }: Props) => {
                 )}
               </div>
               <div className="flex justify-end md:justify-center">
-                <MobileNavbar className="pointer-events-auto md:hidden" />
+                <MobileNavbar
+                  dictionary={dictionary}
+                  className="pointer-events-auto md:hidden"
+                />
                 <DesktopNavbar
                   dictionary={dictionary}
                   className="pointer-events-auto hidden md:block"
                 />
               </div>
-              <div className="flex justify-end items-center md:flex-1">
-                <div className="pointer-events-auto">
+              <div className="flex justify-end items-center gap-1 md:flex-1">
+                <div className="pointer-events-auto hidden md:block">
                   <LocaleSwitcher />
                 </div>
 
