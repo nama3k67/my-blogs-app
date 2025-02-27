@@ -1,13 +1,14 @@
 import { BlogDetails } from "@/components/blog/details";
+import { Locale } from "@/i18n-config";
 import { getBlogDetails, getBlogs } from "@/services/actions/blog.action";
 
 interface Params {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; lang: Locale }>;
 }
 
 export async function generateMetadata({ params }: Params) {
-  const { slug } = await params;
-  const blog = await getBlogDetails(slug);
+  const { lang, slug } = await params;
+  const blog = await getBlogDetails({ slug, lang });
 
   return {
     title: blog?.title,
@@ -16,8 +17,8 @@ export async function generateMetadata({ params }: Params) {
 }
 
 export default async function BlogDetailsPage({ params }: Params) {
-  const { slug } = await params;
-  const blog = await getBlogDetails(slug);
+  const { lang, slug } = await params;
+  const blog = await getBlogDetails({ slug, lang });
 
   return <BlogDetails content={blog?.content || ""} />;
 }

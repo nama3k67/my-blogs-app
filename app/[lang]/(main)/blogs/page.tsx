@@ -3,8 +3,15 @@ import { Suspense } from "react";
 import { BlogList } from "@/components/blog/list";
 import { SimpleLayout } from "@/components/layout/shared/simple";
 import Loading from "./loading";
+import { Locale } from "@/i18n-config";
 
-export default async function Blogs() {
+type Props = {
+  params: Promise<{ lang: Locale }>;
+};
+
+export default async function Blogs({ params }: Props) {
+  const { lang } = await params;
+
   return (
     <SimpleLayout
       title="Blogs về thể thao, sức khỏe và công nghệ"
@@ -13,7 +20,7 @@ export default async function Blogs() {
       <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
         <div className="flex max-w-3xl flex-col space-y-16">
           <Suspense fallback={<Loading />}>
-            <BlogList />
+            <BlogList lang={lang} />
           </Suspense>
         </div>
       </div>
