@@ -2,12 +2,14 @@ import { Card } from "@/components/shared/card";
 import { formatDate } from "@/shared/utils/date";
 import { ROUTES } from "@/shared/constants";
 import { BlogItem as BlogItemType } from "@/shared/types/blog";
+import { Locale } from "@/i18n-config";
 
 type Props = {
   item: BlogItemType;
+  lang: Locale;
 };
 
-export const BlogItem = ({ item }: Props) => {
+export const BlogItem = ({ item, lang }: Props) => {
   return (
     <article className="md:grid md:grid-cols-4 md:items-baseline">
       <Card className="md:col-span-3">
@@ -21,7 +23,7 @@ export const BlogItem = ({ item }: Props) => {
           className="md:hidden"
           decorate
         >
-          {formatDate(item.createdat)}
+          {formatDate(item.createdat, { locale: lang })}
         </Card.Eyebrow>
 
         <Card.Description>{item.description}</Card.Description>
