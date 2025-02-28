@@ -11,6 +11,11 @@
     "introduction": "Chào mừng bạn đến với blog của tôi! Tôi là Nam Trần, một lập trình viên, người yêu chạy và thích du lịch. Tôi viết về công nghệ, thể thao và du lịch. Hãy thoải mái khám phá blog của tôi và để lại những bình luận về những bài viết bạn thấy thú vị. Chúc bạn đọc vui vẻ!",
     "read_article": "Đọc bài viết"
   },
+  "about": {
+    "title": "Giới thiệu",
+    "description": "Nam Trần là một lập trình viên, người yêu chạy và thích du lịch. Anh đã có nhiều năm kinh nghiệm làm việc trong lĩnh vực công nghệ thông tin và phát triển web. Nam cũng là một vận động viên chạy và thích tham gia các cuộc thi chạy dài. Ngoài ra, anh cũng là một người yêu thích du lịch và đã đi khắp nơi trên thế giới.",
+    "read_more": "Đọc thêm"
+  },
   "resume": {
     "title": "Công việc & Học vấn",
     "company": "Công ty",
@@ -41,7 +46,7 @@
     "home": "Trang chủ",
     "blogs": "Bài viết",
     "about": "Giới thiệu",
-    "contact": "Liên hệ"
+    "projects": "Dự án"
   },
   "error": {
     "404": "Không tìm thấy trang",
