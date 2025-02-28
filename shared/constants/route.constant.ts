@@ -6,7 +6,7 @@ export const ROUTES = {
     BLOG_LIST: "/blogs",
     BLOG_DETAILS: "/blogs/:slug",
     ABOUT: "/about",
-    CONTACT: "/contact",
+    PROJECTS: "/projects",
   },
   PROTECTED: {
     DASHBOARD: "/dashboard",
