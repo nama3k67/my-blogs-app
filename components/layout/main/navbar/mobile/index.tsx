@@ -2,7 +2,7 @@ import { ChevronDown } from "lucide-react";
 import React, { useState } from "react";
 
 import { getDictionary } from "@/get-dictionary";
-import { ROUTES } from "@/shared/constants";
+import { NAVBAR_ITEMS } from "../constant";
 import MobileNavbarItem from "./item";
 
 import LocaleSwitcher from "@/components/shared/local-switcher";
@@ -46,24 +46,15 @@ export default function MobileNavbar({
 
             <nav>
               <ul className="-my-2 divide-y divide-zinc-100 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
-                <MobileNavbarItem href={ROUTES.PUBLIC.HOME} setOpen={setOpen}>
-                  {navigation.home}
-                </MobileNavbarItem>
-                <MobileNavbarItem
-                  href={ROUTES.PUBLIC.BLOG_LIST}
-                  setOpen={setOpen}
-                >
-                  {navigation.blogs}
-                </MobileNavbarItem>
-                <MobileNavbarItem href={ROUTES.PUBLIC.ABOUT} setOpen={setOpen}>
-                  {navigation.about}
-                </MobileNavbarItem>
-                <MobileNavbarItem
-                  href={ROUTES.PUBLIC.CONTACT}
-                  setOpen={setOpen}
-                >
-                  {navigation.contact}
-                </MobileNavbarItem>
+                {NAVBAR_ITEMS.map((item, index) => (
+                  <MobileNavbarItem
+                    key={index}
+                    href={item.href}
+                    setOpen={setOpen}
+                  >
+                    {navigation[item.name as keyof typeof navigation]}
+                  </MobileNavbarItem>
+                ))}
               </ul>
             </nav>
 
