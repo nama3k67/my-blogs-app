@@ -1,15 +1,28 @@
 {
   "metadata": {
-    "title": "Blog",
-    "description": "Một blog về công nghệ, lập trình và phát triển web.",
-    "author": "Nam Trần",
-    "keywords": "blog, công nghệ, lập trình, phát triển web"
+    "title": "Blogs",
+    "description": "Chia sẻ về công nghệ, thể thao và phong cách sống.",
+    "author": "Noal Trần",
+    "keywords": "blog, công nghệ, lập trình, phát triển web",
+    "information": "Lập trình viên và là người chạy bộ nhiệt huyết"
+  },
+  "blogs": {
+    "title": "Bài viết",
+    "description": "Danh sách các bài viết mới nhất về công nghệ, thể thao và phong cách sống.",
+    "information": "Blogs về thể thao, sức khỏe và công nghệ",
+    "introduction": "Là một lập trình viên đam mê thể thao sức bền, mình muốn chia sẻ những kiến thức của mình về dinh dưỡng, phương pháp tập luyện và công nghệ"
   },
   "home": {
     "title": "Trang chủ",
     "description": "Lập trình viên, người yêu chạy và thích du lịch.",
     "introduction": "Chào mừng bạn đến với blog của tôi! Tôi là Nam Trần, một lập trình viên, người yêu chạy và thích du lịch. Tôi viết về công nghệ, thể thao và du lịch. Hãy thoải mái khám phá blog của tôi và để lại những bình luận về những bài viết bạn thấy thú vị. Chúc bạn đọc vui vẻ!",
     "read_article": "Đọc bài viết"
+  },
+  "projects": {
+    "title": "Dự án",
+    "description": "Danh sách các dự án mới nhất mà tôi đã tham gia.",
+    "information": "Dự án về phát triển web, lập trình và chạy bộ",
+    "introduction": "Tôi đã tham gia vào nhiều dự án trong lĩnh vực phát triển web, lập trình và chạy bộ. Dưới đây là một số dự án mà tôi đã tham gia."
   },
   "about": {
     "title": "Giới thiệu",
@@ -43,6 +56,7 @@
     "submit": "Gửi"
   },
   "navigation": {
+    "title": "Danh mục",
     "home": "Trang chủ",
     "blogs": "Bài viết",
     "about": "Giới thiệu",
@@ -58,11 +72,36 @@
     "password_required": "Mật khẩu là bắt buộc",
     "password_min_length": "Mật khẩu phải có ít nhất 8 ký tự",
     "confirm_password_required": "Xác nhận mật khẩu là bắt buộc",
-    "confirm_password_not_match": "Xác nhận mật khẩu không khớp với mật khẩu"
+    "confirm_password_not_match": "Xác nhận mật khẩu không khớp với mật khẩu",
+    "comment_required": "Bạn cần nhập nội dung bình luận"
   },
   "locale_switcher": {
     "placeholder": "Chọn ngôn ngữ",
     "en": "Tiếng Anh",
     "vi": "Tiếng Việt"
+  },
+  "comment": {
+    "title": "Bình luận",
+    "no_comment": "Chưa có bình luận",
+    "leave_comment": "Để lại bình luận",
+    "submit": "Gửi",
+    "reply": "Trả lời",
+    "edit": "Chỉnh sửa",
+    "delete": "Xóa",
+    "confirm_delete": "Bạn có chắc chắn muốn xóa bình luận này không?",
+    "placeholder": "Nhập bình luận của bạn"
+  },
+  "not_found": {
+    "title": "Không tìm thấy trang",
+    "description": "Xin lỗi, trang bạn đang tìm kiếm không tồn tại.",
+    "back_to_home": "Quay lại trang chủ"
+  },
+  "user_dialog": {
+    "user_info": "Thông tin người dùng",
+    "acc_setting": "Cài đặt tài khoản",
+    "acc_setting_desc": "Quản lý thông tin cá nhân và cài đặt tài khoản của bạn",
+    "information": "Thông tin",
+    "change_password": "Đổi mật khẩu",
+    "logout": "Đăng xuất"
   }
 }

@@ -1,15 +1,28 @@
 {
   "metadata": {
-    "title": "Blog",
+    "title": "Blogs",
     "description": "Blogs about technology, sport, and travel.",
-    "author": "Nam Tran",
-    "keywords": "blog, technology, sport, travel"
+    "author": "Noal Tran",
+    "keywords": "blog, technology, sport, travel",
+    "information": "Software engineer and enthusiastic runner"
   },
   "home": {
     "title": "Home",
     "description": "Software engineer, runner, and travel enthusiast.",
     "introduction": "Welcome to my blog! I'm Nam Tran, a software engineer, runner, and travel enthusiast. I write about technology, sport, and travel. Feel free to explore my blog and leave comments on the posts you find interesting. Enjoy reading!",
     "read_article": "Read article"
+  },
+  "blogs": {
+    "title": "Blogs",
+    "description": "List of the latest articles about technology, sport, and travel.",
+    "information": "Blogs about sport, health, and technology",
+    "introduction": "As a passionate long-distance runner, I want to share my knowledge about nutrition, training methods, and technology"
+  },
+  "projects": {
+    "title": "Projects",
+    "description": "List of the latest projects I have worked on.",
+    "information": "Projects about web development, software engineering, and running",
+    "introduction": "I have worked on various projects in the field of web development, software engineering, and running. Here are some of the projects I have worked on."
   },
   "about": {
     "title": "About",
@@ -30,7 +43,7 @@
     "have_account": "Already have an account?"
   },
   "log_in": {
-    "title": "Log In",
+    "title": "Log in",
     "description": "Log in to comment, interact, and read the latest posts!",
     "have_account": "Don't have an account?",
     "forgot_password": "Forgot password?"
@@ -43,6 +56,7 @@
     "submit": "Submit"
   },
   "navigation": {
+    "title": "Menu",
     "home": "Home",
     "blogs": "Blogs",
     "projects": "Projects",
@@ -58,11 +72,37 @@
     "password_required": "Password is required",
     "password_min_length": "Password must be at least 8 characters long",
     "confirm_password_required": "Confirm password is required",
-    "confirm_password_not_match": "Confirm password does not match the password"
+    "confirm_password_not_match": "Confirm password does not match the password",
+    "comment_required": "Comment is required"
   },
   "locale_switcher": {
     "placeholder": "Select a language",
     "en": "English",
     "vi": "Vietnamese"
+  },
+  "comment": {
+    "title": "Comments",
+    "no_comment": "No comment yet",
+    "leave_comment": "Leave a comment",
+    "submit": "Submit",
+    "reply": "Reply",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm_delete": "Are you sure you want to delete this comment?",
+    "cancel": "Cancel",
+    "placeholder": "Write a comment..."
+  },
+  "not_found": {
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist.",
+    "back_to_home": "Back to home"
+  },
+  "user_dialog": {
+    "user_info": "User Info",
+    "acc_setting": "Account Settings",
+    "acc_setting_desc": "Manage your personal information and account settings",
+    "information": "Information",
+    "change_password": "Change Password",
+    "logout": "Log out"
   }
 }
