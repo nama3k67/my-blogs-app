@@ -10,13 +10,13 @@ export function BlogDetails({ content }: Props) {
   const processedContent = content.replace(/\\n/g, "\n");
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <>
       <ReactMarkdown
         remarkPlugins={[remarkBreaks]}
         className={markdownStyles.markdown}
       >
         {processedContent}
       </ReactMarkdown>
-    </div>
+    </>
   );
 }

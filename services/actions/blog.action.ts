@@ -1,7 +1,10 @@
+import { cache } from "react";
+
 import { Locale } from "@/i18n-config";
 import prisma from "@/shared/libs/prisma";
 import { slugify } from "@/shared/libs/utils";
 import { BlogItem } from "@/shared/types/blog";
+
 import { BlogRecreateRequest } from "../type/blog.type";
 import { getLanguage } from "./lang.action";
 
@@ -14,7 +17,7 @@ async function getLanguageId(code: Locale) {
   return language.id;
 }
 
-export async function getBlogs(requestData?: { lang: Locale }) {
+export const getBlogs = cache(async (requestData?: { lang: Locale }) => {
   let langId;
   if (requestData) {
     langId = await getLanguageId(requestData.lang);
@@ -37,26 +40,44 @@ export async function getBlogs(requestData?: { lang: Locale }) {
   });
 
   return blogs;
-}
+});
 
-export async function getBlogDetails({
-  slug,
-  lang,
-}: {
-  slug: string;
-  lang: Locale;
-}) {
-  const langId = await getLanguageId(lang);
+export const getBlogDetails = cache(
+  async ({ slug, lang }: { slug: string; lang: Locale }) => {
+    // First find the original blog translation to get the blog ID
+    const originalTranslation = await prisma.blog_translations.findUnique({
+      where: { slug },
+      select: { blogid: true },
+    });
 
-  const data = await prisma.blog_translations.findUnique({
-    where: {
-      slug,
-      languageid: langId,
-    },
-  });
+    if (!originalTranslation) {
+      return null; // Blog not found with this slug
+    }
 
-  return data;
-}
+    // Get the language ID for the target language
+    const langId = await getLanguageId(lang);
+
+    // Find the translation in the requested language using the blog ID
+    const translation = await prisma.blog_translations.findUnique({
+      where: {
+        blogid_languageid: {
+          blogid: originalTranslation.blogid,
+          languageid: langId,
+        },
+      },
+      include: {
+        blogs: true,
+      },
+    });
+
+    // If no translation exists in the requested language, return null
+    if (!translation) {
+      return null;
+    }
+
+    return translation;
+  }
+);
 
 export async function createBlog(data: BlogRecreateRequest) {
   const langId = await getLanguageId(data.lang);
