@@ -7,11 +7,7 @@ export async function getAuth(userId: number) {
     let userDetails = null;
 
     if (!user) {
-      return {
-        success: false,
-        message: "User not found",
-        data: null,
-      };
+      return null;
     }
 
     userDetails = {
@@ -21,9 +17,6 @@ export async function getAuth(userId: number) {
       createdAt: user.createdat?.toISOString(),
     };
 
-    return {
-      success: true,
-      data: userDetails,
-    };
+    return userDetails;
   });
 }

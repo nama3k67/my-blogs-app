@@ -1,11 +1,10 @@
-import "server-only";
+"use server";
 
-import prisma from "@/shared/libs/prisma";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
-import { cache } from "react";
 
 import { TOKEN } from "@/shared/constants";
+import prisma from "@/shared/libs/prisma";
 import { TokenPayload, Tokens } from "@/shared/types/auth";
 import { storeCookies } from "./cookie";
 
@@ -59,44 +58,62 @@ export async function generateTokens(
 
   return { accessToken, refreshToken };
 }
+// Keep the original verify function but make it not refresh tokens
+export const verify = async () => {
+  try {
+    const cookieStore = await cookies();
 
-export const verify = cache(async () => {
-  "use server";
-  const cookieStore = await cookies();
-
-  // Check access token first
-  const accessCookie = cookieStore.get(TOKEN.ACCESS);
-  if (accessCookie) {
-    const payload = verifyToken(accessCookie.value, jwtSecret);
-    if (payload) {
-      return { isAuth: true, userId: payload.userId };
-    }
-  }
-
-  // Then check refresh token
-  const refreshCookie = cookieStore.get(TOKEN.REFRESH);
-  if (refreshCookie) {
-    const payload = verifyToken(refreshCookie.value, jwtRefreshSecret);
-    if (payload) {
-      const tokenRecord = await prisma.userToken.findUnique({
-        where: { token: refreshCookie.value },
-      });
-
-      if (!tokenRecord || tokenRecord.expiresAt < new Date()) {
-        console.log("Refresh token expired");
-        return { isAuth: false, userId: null };
+    // Check access token first
+    const accessCookie = cookieStore.get(TOKEN.ACCESS);
+    if (accessCookie) {
+      const payload = verifyToken(accessCookie.value, jwtSecret);
+      if (payload) {
+        return { isAuth: true, userId: payload.userId };
       }
-
-      const { accessToken, refreshToken: newRefreshToken } =
-        await generateTokens(
-          { userId: payload.userId, email: payload.email },
-          refreshCookie.value
-        );
-
-      await storeCookies(accessToken, newRefreshToken);
-      return { isAuth: true, userId: payload.userId };
     }
-  }
 
-  return { isAuth: false, userId: null };
-});
+    // Then check refresh token
+    const refreshCookie = cookieStore.get(TOKEN.REFRESH);
+    if (refreshCookie) {
+      const payload = verifyToken(refreshCookie.value, jwtRefreshSecret);
+      if (payload) {
+        const tokenRecord = await prisma.userToken.findUnique({
+          where: { token: refreshCookie.value },
+        });
+
+        if (!tokenRecord || tokenRecord.expiresAt < new Date()) {
+          console.log("Refresh token expired");
+          return { isAuth: false, userId: null };
+        }
+
+        // Don't refresh tokens here, just return auth status
+        return {
+          isAuth: true,
+          userId: payload.userId,
+          needsRefresh: true,
+          email: payload.email,
+        };
+      }
+    }
+
+    return { isAuth: false, userId: null };
+  } catch (error) {
+    console.error("Error verifying token", error);
+    return { isAuth: false, userId: null };
+  }
+};
+
+// Add a dedicated token refresh action
+export const refreshTokens = async (
+  userId: number,
+  email: string,
+  currentRefreshToken: string
+) => {
+  const { accessToken, refreshToken: newRefreshToken } = await generateTokens(
+    { userId, email },
+    currentRefreshToken
+  );
+
+  await storeCookies(accessToken, newRefreshToken);
+  return true;
+};
