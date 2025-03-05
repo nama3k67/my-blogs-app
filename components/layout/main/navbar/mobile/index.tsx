@@ -1,7 +1,6 @@
-import { ChevronDown } from "lucide-react";
+import { List } from "lucide-react";
 import React, { useState } from "react";
 
-import { getDictionary } from "@/get-dictionary";
 import { NAVBAR_ITEMS } from "../constant";
 import MobileNavbarItem from "./item";
 
@@ -16,13 +15,14 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useTranslation } from "@/providers/translation.provider";
+import ThemeToggle from "../../themToggle";
 
 export default function MobileNavbar({
-  dictionary,
   ...props
-}: {
-  dictionary: Awaited<ReturnType<typeof getDictionary>>;
-} & React.ComponentPropsWithoutRef<"div">) {
+}: React.ComponentPropsWithoutRef<"div">) {
+  const { dictionary, lang } = useTranslation();
+
   const navigation = dictionary.navigation;
   const [open, setOpen] = useState(false);
 
@@ -30,8 +30,8 @@ export default function MobileNavbar({
     <div {...props}>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button variant="outline">
-            Menu <ChevronDown />
+          <Button variant="outline" className="rounded-full">
+            <List />
           </Button>
         </DialogTrigger>
         <DialogPortal>
@@ -40,7 +40,10 @@ export default function MobileNavbar({
           <DialogContent className="sm:max-w-[425px] gap-0">
             <DialogHeader className="text-start mb-4">
               <DialogTitle className="text-zinc-600 font-medium text-base">
-                Navigation
+                <div className="flex">
+                  <LocaleSwitcher />
+                  <ThemeToggle />
+                </div>
               </DialogTitle>
             </DialogHeader>
 
@@ -49,7 +52,7 @@ export default function MobileNavbar({
                 {NAVBAR_ITEMS.map((item, index) => (
                   <MobileNavbarItem
                     key={index}
-                    href={item.href}
+                    href={`/${lang}${item.href}`}
                     setOpen={setOpen}
                   >
                     {navigation[item.name as keyof typeof navigation]}
@@ -57,10 +60,6 @@ export default function MobileNavbar({
                 ))}
               </ul>
             </nav>
-
-            <div className="flex justify-end mt-1">
-              <LocaleSwitcher />
-            </div>
           </DialogContent>
         </DialogPortal>
       </Dialog>

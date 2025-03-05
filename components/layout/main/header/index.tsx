@@ -1,24 +1,20 @@
 "use client";
 
 import clsx from "clsx";
-import { ChevronDown } from "lucide-react";
+import Link from "next/link";
+import { ComponentPropsWithoutRef, CSSProperties, FC } from "react";
 
-import BlogCreate from "@/components/blog/create";
 import { Container } from "@/components/shared/container";
 import LocaleSwitcher from "@/components/shared/local-switcher";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import UserInfoDialog from "@/components/user/information";
 
-import { handleLogout } from "@/actions/auth";
 import { getDictionary } from "@/get-dictionary";
 import { useAuth } from "@/providers/auth.provider";
+import { ROUTES } from "@/shared/constants";
 import useHeader from "@/shared/hooks/useHeader";
+import { convertUsername } from "@/shared/utils/common";
 
 import DesktopNavbar from "../navbar/desktop";
 import MobileNavbar from "../navbar/mobile";
@@ -31,7 +27,7 @@ type Props = {
 function AvatarContainer({
   className,
   ...props
-}: React.ComponentPropsWithoutRef<"div">) {
+}: ComponentPropsWithoutRef<"div">) {
   return (
     <div
       className={clsx(
@@ -43,7 +39,7 @@ function AvatarContainer({
   );
 }
 
-const Header: React.FC<Props> = ({ dictionary }: Props) => {
+const Header: FC<Props> = ({ dictionary }: Props) => {
   const { isHomePage, avatarRef, headerRef } = useHeader();
   const { user } = useAuth();
 
@@ -65,15 +61,14 @@ const Header: React.FC<Props> = ({ dictionary }: Props) => {
             <Container
               className="top-0 order-last -mb-3 pt-3"
               style={{
-                position:
-                  "var(--header-position)" as React.CSSProperties["position"],
+                position: "var(--header-position)" as CSSProperties["position"],
               }}
             >
               <div
                 className="top-[var(--avatar-top,theme(spacing.3))] w-full"
                 style={{
                   position:
-                    "var(--header-inner-position)" as React.CSSProperties["position"],
+                    "var(--header-inner-position)" as CSSProperties["position"],
                 }}
               >
                 <div className="relative">
@@ -88,8 +83,10 @@ const Header: React.FC<Props> = ({ dictionary }: Props) => {
                     className="block h-16 w-16 origin-left"
                     style={{ transform: "var(--avatar-image-transform)" }}
                   >
-                    <AvatarImage src="/avatar.jpg" />
-                    <AvatarFallback>NT</AvatarFallback>
+                    <AvatarImage src="/logo.png" />
+                    <AvatarFallback>
+                      {user && convertUsername(user?.username)}
+                    </AvatarFallback>
                   </Avatar>
                 </div>
               </div>
@@ -100,87 +97,59 @@ const Header: React.FC<Props> = ({ dictionary }: Props) => {
           ref={headerRef}
           className="top-0 z-10 h-16 pt-6"
           style={{
-            position:
-              "var(--header-position)" as React.CSSProperties["position"],
+            position: "var(--header-position)" as CSSProperties["position"],
           }}
         >
           <Container
             className="top-[var(--header-top,theme(spacing.6))] w-full"
             style={{
               position:
-                "var(--header-inner-position)" as React.CSSProperties["position"],
+                "var(--header-inner-position)" as CSSProperties["position"],
             }}
           >
             <div className="relative flex gap-4 items-center">
               <div className="flex flex-1">
                 {!isHomePage && (
                   <Avatar>
-                    <AvatarImage src="/avatar1.jpg" />
-                    <AvatarFallback>NT</AvatarFallback>
+                    <AvatarImage src="/logo.png" />
+                    <AvatarFallback>
+                      {user && convertUsername(user.username)}
+                    </AvatarFallback>
                   </Avatar>
                 )}
               </div>
               <div className="flex justify-end md:justify-center">
-                <MobileNavbar
-                  dictionary={dictionary}
-                  className="pointer-events-auto md:hidden"
-                />
-                <DesktopNavbar
-                  dictionary={dictionary}
-                  className="pointer-events-auto hidden md:block"
-                />
+                <MobileNavbar className="pointer-events-auto md:hidden" />
+                <DesktopNavbar className="pointer-events-auto hidden md:block" />
               </div>
+
               <div className="flex justify-end items-center gap-1 md:flex-1">
                 <div className="pointer-events-auto hidden md:block">
                   <LocaleSwitcher />
                 </div>
 
-                <div className="pointer-events-auto">
+                <div className="pointer-events-auto hidden md:block">
                   <ThemeToggle />
                 </div>
+
+                {user ? (
+                  <UserInfoDialog user={user} dictionary={dictionary} />
+                ) : (
+                  <Button variant="outline" className="rounded-full">
+                    <Link
+                      href={ROUTES.PUBLIC.LOGIN}
+                      className="pointer-events-auto text-zinc-800 dark:text-zinc-100 font-medium"
+                    >
+                      {dictionary.log_in.title}
+                    </Link>
+                  </Button>
+                )}
               </div>
-
-              {user ? (
-                <DropdownMenu>
-                  <DropdownMenuTrigger
-                    asChild
-                    className="pointer-events-auto rounded-full shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20"
-                  >
-                    <Button variant="ghost" className="border-none">
-                      <div>{user.username}</div>
-                      <ChevronDown />
-                    </Button>
-                  </DropdownMenuTrigger>
-
-                  <DropdownMenuContent
-                    className="pointer-events-auto"
-                    align="end"
-                  >
-                    <DropdownMenuItem>Thông tin cá nhân</DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <BlogCreate />
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={handleLogout}>
-                      Đăng xuất
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              ) : (
-                // <Button
-                //   variant="outline"
-                //   asChild
-                //   className="pointer-events-auto"
-                // >
-                //   <Link href={ROUTES.PUBLIC.LOGIN}>
-                //     {dictionary.log_in.title}
-                //   </Link>
-                // </Button>
-                <></>
-              )}
             </div>
           </Container>
         </div>
       </header>
+
       {isHomePage && (
         <div
           className="flex-none"
