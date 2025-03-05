@@ -59,10 +59,9 @@ export function LoginForm({
   });
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    console.log('test');
     const response = await handleLogin(data);
     setLoginResponse(response);
-    
+
     if (response.success) {
       form.reset();
     } else {
