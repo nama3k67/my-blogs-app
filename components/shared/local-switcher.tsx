@@ -29,10 +29,13 @@ export default function LocaleSwitcher() {
 
   return (
     <Select defaultValue={lang} onValueChange={onLocaleChange}>
-      <SelectTrigger showIcon={false} className="border-none shadow-none w-fit hover:bg-accent hover:text-accent-foreground rounded-full ">
+      <SelectTrigger
+        showIcon={false}
+        className="border-none shadow-none w-fit hover:bg-accent hover:text-accent-foreground rounded-full px-2"
+      >
         <Globe
-          strokeWidth={1.6}
-          className= "!size-6 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:stroke-white/90 [@media(prefers-color-scheme:dark)]:fill-teal-50 [@media(prefers-color-scheme:dark)]:stroke-teal-500 [@media(prefers-color-scheme:dark)]:group-hover:fill-teal-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-teal-600"
+          strokeWidth={1.5}
+          className="!size-6 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:stroke-white/90 [@media(prefers-color-scheme:dark)]:fill-teal-50 [@media(prefers-color-scheme:dark)]:stroke-teal-500 [@media(prefers-color-scheme:dark)]:group-hover:fill-teal-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-teal-600"
         />
       </SelectTrigger>
 
