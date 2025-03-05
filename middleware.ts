@@ -35,6 +35,10 @@ export function middleware(request: NextRequest) {
       )
     );
   }
+
+  const response = NextResponse.next();
+  response.headers.set("x-current-url", request.nextUrl.toString());
+  return response;
 }
 
 export const config = {
