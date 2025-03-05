@@ -7,22 +7,23 @@ import { ROUTES } from "@/shared/constants";
 export async function handleAsyncAction<T>(
   asyncFunction: () => Promise<T>,
   needsAuth = true
-): Promise<
-  | T
-  | {
-      success: false;
-      data?: never;
-      message: string;
-      errors: Record<string, unknown>;
-    }
-> {
+): Promise<{
+  success: boolean;
+  data?: T;
+  message: string;
+  errors?: Record<string, unknown>;
+}> {
   try {
     if (needsAuth) {
       const { isAuth } = await verify();
       if (!isAuth) redirect(ROUTES.PUBLIC.LOGIN);
     }
 
-    return await asyncFunction();
+    return {
+      success: true,
+      data: await asyncFunction(),
+      message: "Success",
+    };
   } catch (error: unknown) {
     let errorMessage = "An unknown error occurred";
     if (error instanceof Error) {
