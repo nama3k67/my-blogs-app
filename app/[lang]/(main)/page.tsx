@@ -14,10 +14,10 @@ export async function generateMetadata({
   params: Promise<{ lang: Locale }>;
 }): Promise<Metadata> {
   const { lang } = await params;
-  const { home } = await getDictionary(lang);
+  const { home, metadata } = await getDictionary(lang);
 
   return {
-    title: home.title,
+    title: `${metadata.author} - ${metadata.information}`,
     description: home.description,
   };
 }
