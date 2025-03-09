@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/providers/auth.provider";
-import { createBlog } from "@/services/actions/blog.action";
+// import { createBlog } from "@/services/actions/blog.action";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import dynamic from "next/dynamic";
 import React, { useState } from "react";
@@ -25,7 +25,7 @@ const BlogCreate: React.FC = () => {
   const handleSubmit = () => {
     if (!user) return;
 
-    createBlog({ title, content, userId: user?.id });
+    // createBlog({ title, content, userId: user?.id });
   };
 
   return (
