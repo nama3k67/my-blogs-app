@@ -16,7 +16,7 @@ export function Resume({ dictionary }: Props) {
   const resume: Array<Role> = [
     {
       company: "Enlab Software",
-      title: "CEO",
+      title: "Software Engineer",
       logo: logoEnlabSoftware,
       start: "02/2022",
       end: "01/2025",
