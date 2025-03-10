@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogOverlay,
   DialogPortal,
@@ -45,6 +46,8 @@ export default function MobileNavbar({
                   <ThemeToggle />
                 </div>
               </DialogTitle>
+
+              <DialogDescription hidden>{navigation.title}</DialogDescription>
             </DialogHeader>
 
             <nav>
