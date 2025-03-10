@@ -110,12 +110,14 @@ const Header: FC<Props> = ({ dictionary }: Props) => {
             <div className="relative flex gap-4 items-center">
               <div className="flex flex-1">
                 {!isHomePage && (
-                  <Avatar>
-                    <AvatarImage alt="Header Avatar" src="/logo.png" />
-                    <AvatarFallback>
-                      {user && convertUsername(user.username)}
-                    </AvatarFallback>
-                  </Avatar>
+                  <Link href={ROUTES.PUBLIC.HOME} className="pointer-events-auto">
+                      <Avatar>
+                        <AvatarImage alt="Header Avatar" src="/logo.png" />
+                        <AvatarFallback>
+                          {user && convertUsername(user.username)}
+                        </AvatarFallback>
+                      </Avatar>
+                  </Link>
                 )}
               </div>
               <div className="flex justify-end md:justify-center">
