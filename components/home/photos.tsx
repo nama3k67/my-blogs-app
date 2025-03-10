@@ -29,7 +29,7 @@ export default function Photos() {
           >
             <Image
               src={image}
-              alt=""
+              alt={`Image ${imageIndex + 1}`}
               sizes="(min-width: 640px) 18rem, 11rem"
               className="absolute inset-0 h-full w-full object-cover"
             />

@@ -83,7 +83,7 @@ const Header: FC<Props> = ({ dictionary }: Props) => {
                     className="block h-16 w-16 origin-left"
                     style={{ transform: "var(--avatar-image-transform)" }}
                   >
-                    <AvatarImage src="/logo.png" />
+                    <AvatarImage alt="Large Avatar" src="/logo.png" />
                     <AvatarFallback>
                       {user && convertUsername(user?.username)}
                     </AvatarFallback>
@@ -111,7 +111,7 @@ const Header: FC<Props> = ({ dictionary }: Props) => {
               <div className="flex flex-1">
                 {!isHomePage && (
                   <Avatar>
-                    <AvatarImage src="/logo.png" />
+                    <AvatarImage alt="Header Avatar" src="/logo.png" />
                     <AvatarFallback>
                       {user && convertUsername(user.username)}
                     </AvatarFallback>
