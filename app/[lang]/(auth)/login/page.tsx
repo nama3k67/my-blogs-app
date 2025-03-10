@@ -11,15 +11,15 @@ export async function generateMetadata({
   const dictionary = await getDictionary(lang);
 
   return {
-    title: dictionary.log_in.title,
+    title: `${dictionary.log_in.title} | ${dictionary.metadata.author}`,
     description: dictionary.log_in.description,
   };
 }
 
 export default function Page() {
   return (
-    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
-      <div className="w-full max-w-sm">
+    <div className="flex min-h-svh w-full h-svh items-center justify-center p-0 md:p-10">
+      <div className="w-full sm:max-w-sm">
         <LoginForm />
       </div>
     </div>

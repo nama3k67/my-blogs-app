@@ -1,21 +1,18 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { handleSignUp } from "@/actions/auth";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/shared/libs/utils";
 import { useTranslation } from "@/providers/translation.provider";
+import { ROUTES } from "@/shared/constants";
+import { cn } from "@/shared/libs/utils";
 import {
   Form,
   FormControl,
@@ -24,8 +21,6 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import Link from "next/link";
-import { ROUTES } from "@/shared/constants";
 
 const formSchema = z
   .object({
@@ -70,12 +65,23 @@ export function SignupForm({
   };
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card className="rounded-2xl">
-        <CardHeader>
-          <CardTitle className="text-2xl">{dictionary.sign_up.title}</CardTitle>
-          <CardDescription>{dictionary.sign_up.description}</CardDescription>
-        </CardHeader>
+    <div className={cn("flex flex-col gap-7", className)} {...props}>
+      <div className="flex flex-col items-center gap-1">
+        <Link href={ROUTES.PUBLIC.HOME}>
+          <Image
+            src="/logo.png"
+            width={48}
+            height={48}
+            alt="Logo Image"
+            className="rounded-xl"
+          />
+        </Link>
+        <h1 className="text-2xl font-medium text-gray-800">
+          {dictionary.sign_up.description}
+        </h1>
+      </div>
+
+      <Card className="rounded-none w-full sm:rounded-2xl pt-5">
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} autoComplete="on">
@@ -145,13 +151,14 @@ export function SignupForm({
                     )}
                   />
                 </div>
-
-                <Button type="submit" className="w-full">
-                  Sign up
-                </Button>
-                <Button variant="outline" className="w-full">
-                  Sign up with Google
-                </Button>
+                <div className="flex flex-col gap-2">
+                  <Button type="submit" className="w-full">
+                    {dictionary.sign_up.title}
+                  </Button>
+                  <Button variant="outline" className="w-full">
+                    {dictionary.sign_up.description}
+                  </Button>
+                </div>
               </div>
 
               <div className="mt-4 text-center text-sm">

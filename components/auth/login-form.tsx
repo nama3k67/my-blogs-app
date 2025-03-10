@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertCircle, Loader2 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -11,15 +12,12 @@ import { handleLogin } from "@/actions/auth";
 import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
+  CardContent
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/shared/libs/utils";
 import { useTranslation } from "@/providers/translation.provider";
 import { ROUTES } from "@/shared/constants";
+import { cn } from "@/shared/libs/utils";
 import { LoginResponse } from "@/shared/types/auth/login.type";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import {
@@ -78,12 +76,22 @@ export function LoginForm({
           <AlertDescription>{LoginResponse.message}</AlertDescription>
         </Alert>
       )}
+      <div className="flex flex-col items-center gap-1">
+        <Link href={ROUTES.PUBLIC.HOME}>
+          <Image
+            src="/logo.png"
+            width={48}
+            height={48}
+            alt="Logo Image"
+            className="rounded-xl"
+          />
+        </Link>
+        <h1 className="text-2xl font-medium text-gray-800">
+          {dictionary.log_in.description}
+        </h1>
+      </div>
 
-      <Card className="rounded-2xl">
-        <CardHeader>
-          <CardTitle className="text-2xl">{dictionary.log_in.title}</CardTitle>
-          <CardDescription>{dictionary.log_in.description}</CardDescription>
-        </CardHeader>
+      <Card className="rounded-none w-full sm:rounded-2xl pt-5">
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} autoComplete="on">
@@ -137,10 +145,10 @@ export function LoginForm({
                       hidden: !form.formState.isSubmitting,
                     })}
                   />
-                  Login
+                  {dictionary.log_in.title}
                 </Button>
                 <Button variant="outline" className="w-full">
-                  Login with Google
+                    {dictionary.log_in.with_google}
                 </Button>
               </div>
               <div className="mt-4 text-center text-sm">
