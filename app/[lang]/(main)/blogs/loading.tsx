@@ -1,8 +1,13 @@
+import { Skeleton } from "@/components/ui/skeleton";
+
 export default function Loading() {
   return (
-    <div className="flex flex-col items-center justify-center h-full space-y-4">
-      <div className="w-10 h-10 bg-primary rounded-full animate-bounce" />
-      <div className="text-primary">Loading...</div>
+    <div className="md:grid md:grid-cols-4 md:items-start md:gap-x-4">
+      <div className="md:col-span-3 flex flex-col space-y-3 md:space-y-0">
+        <Skeleton className="md:hidden h-5 w-32" />
+        <Skeleton className="h-20" />
+      </div>
+      <Skeleton className="hidden md:block z-10 order-first h-10" />
     </div>
   );
 }
