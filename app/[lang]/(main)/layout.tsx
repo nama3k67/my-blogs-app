@@ -23,7 +23,7 @@ export default async function MainLayout({ params, children }: IProps) {
       <div className="relative flex w-full flex-col">
         <Header dictionary={dictionary} />
         <main className="flex-auto">{children}</main>
-        <Footer />
+        <Footer dictionary={dictionary} />
       </div>
     </>
   );

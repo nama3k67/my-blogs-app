@@ -1,6 +1,9 @@
 import Link from "next/link";
 
 import { ContainerOuter, ContainerInner } from "@/components/shared/container";
+import { getDictionary } from "@/get-dictionary";
+import { ROUTES } from "@/shared/constants";
+import { NAVBAR_ITEMS } from "./navbar/constant";
 
 function NavLink({
   href,
@@ -19,7 +22,13 @@ function NavLink({
   );
 }
 
-export default function Footer() {
+export default function Footer({
+  dictionary,
+}: {
+  dictionary: Awaited<ReturnType<typeof getDictionary>>;
+}) {
+  const { navigation } = dictionary;
+
   return (
     <footer className="mt-32 flex-none">
       <ContainerOuter>
@@ -27,14 +36,17 @@ export default function Footer() {
           <ContainerInner>
             <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
               <div className="flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm font-medium text-zinc-800 dark:text-zinc-200">
-                <NavLink href="/about">About</NavLink>
-                <NavLink href="/projects">Projects</NavLink>
-                <NavLink href="/speaking">Speaking</NavLink>
-                <NavLink href="/uses">Uses</NavLink>
+                {NAVBAR_ITEMS.map((item, index) => (
+                  <NavLink
+                    key={index}
+                    href={item.href === ROUTES.PUBLIC.HOME ? "" : item.href}
+                  >
+                    {navigation[item.name as keyof typeof navigation]}
+                  </NavLink>
+                ))}
               </div>
               <p className="text-sm text-zinc-400 dark:text-zinc-500">
-                &copy; {new Date().getFullYear()} Spencer Sharp. All rights
-                reserved.
+                &copy; {new Date().getFullYear()} {dictionary.footer.all_rights}
               </p>
             </div>
           </ContainerInner>
