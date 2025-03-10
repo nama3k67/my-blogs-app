@@ -2,7 +2,7 @@
   "metadata": {
     "title": "Blogs",
     "description": "Chia sẻ về công nghệ, thể thao và phong cách sống.",
-    "author": "Noal Trần",
+    "author": "Noah Trần",
     "keywords": "blog, công nghệ, lập trình, phát triển web",
     "information": "Lập trình viên và là người chạy bộ nhiệt huyết"
   },
@@ -106,5 +106,8 @@
     "information": "Thông tin",
     "change_password": "Đổi mật khẩu",
     "logout": "Đăng xuất"
+  },
+  "footer": {
+    "all_rights": "Bản quyền thuộc về Noah Trần."
   }
 }

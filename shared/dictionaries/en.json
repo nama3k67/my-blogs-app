@@ -2,7 +2,7 @@
   "metadata": {
     "title": "Blogs",
     "description": "Blogs about technology, sport, and travel.",
-    "author": "Noal Tran",
+    "author": "Noah Tran",
     "keywords": "blog, technology, sport, travel",
     "information": "Software engineer and enthusiastic runner"
   },
@@ -107,5 +107,8 @@
     "information": "Information",
     "change_password": "Change Password",
     "logout": "Log out"
+  },
+  "footer": {
+    "all_rights": "Noah Tran. All rights reserved."
   }
 }
