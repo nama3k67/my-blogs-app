@@ -40,14 +40,16 @@
   },
   "sign_up": {
     "title": "Sign Up",
-    "description": "Sign up for an account to comment, interact, and create your own posts!",
-    "have_account": "Already have an account?"
+    "description": "Sign up an account",
+    "have_account": "Already have an account?",
+    "with_google": "Sign up with Google"
   },
   "log_in": {
     "title": "Log in",
-    "description": "Log in to comment, interact, and read the latest posts!",
+    "description": "Log in to your account",
     "have_account": "Don't have an account?",
-    "forgot_password": "Forgot password?"
+    "forgot_password": "Forgot password?",
+    "with_google": "Log in with Google"
   },
   "form": {
     "email": "Email",
