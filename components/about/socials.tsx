@@ -10,7 +10,7 @@ type Props = {
 
 export default function AboutSocials({ dictionary }: Props) {
   return (
-    <ul role="list">
+    <ul>
       {SOCIALS.map((social, index) => (
         <SocialLink key={index} href={social.href} icon={social.icon}>
           {dictionary.about.follow_on} {social.name}
