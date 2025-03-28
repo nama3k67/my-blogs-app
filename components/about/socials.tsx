@@ -1,7 +1,7 @@
 import { MailIcon } from "../icons/socials";
 import { SocialLink } from "../shared/social-link";
 import { Separator } from "../ui/separator";
-import { SOCIALS } from "./constants";
+import { PROFESSIONAL_EMAIL, SOCIALS } from "./constants";
 import { getDictionary } from "@/get-dictionary";
 
 type Props = {
@@ -20,11 +20,11 @@ export default function AboutSocials({ dictionary }: Props) {
       <Separator className="mt-10 mb-9" />
 
       <SocialLink
-        href="mailto:tranphuongnam.engineer@gmail.com"
+        href={`mailto:${PROFESSIONAL_EMAIL}`}
         icon={MailIcon}
         className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
       >
-        tranphuongnam.engineer@gmail.com
+        {PROFESSIONAL_EMAIL}
       </SocialLink>
     </ul>
   );

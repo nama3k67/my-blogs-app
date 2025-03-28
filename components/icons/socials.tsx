@@ -35,6 +35,18 @@ export function LinkedInIcon(props: React.ComponentPropsWithoutRef<"svg">) {
   );
 }
 
+export function FacebookIcon(props: React.ComponentPropsWithoutRef<"svg">) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 2C6.477 2 2 6.477 2 12c0 5.022 3.657 9.167 8.438 9.878v-6.988h-2.54v-2.89h2.54V9.797c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.562v1.875h2.773l-.443 2.89h-2.33v6.988C18.343 21.167 22 17.022 22 12c0-5.523-4.477-10-10-10Z"
+      />
+    </svg>
+  );
+}
+
 export function MailIcon(props: React.ComponentPropsWithoutRef<"svg">) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
