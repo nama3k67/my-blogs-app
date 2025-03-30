@@ -10,10 +10,7 @@ import { z } from "zod";
 
 import { handleLogin } from "@/actions/auth";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useTranslation } from "@/providers/translation.provider";
 import { ROUTES } from "@/shared/constants";
@@ -44,7 +41,7 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
-  const [LoginResponse, setLoginResponse] = useState(initialState);
+  const [loginResponse, setLoginResponse] = useState(initialState);
   const passwordRef = useRef<HTMLInputElement>(null);
 
   const { dictionary } = useTranslation();
@@ -69,11 +66,11 @@ export function LoginForm({
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      {LoginResponse.message && (
+      {loginResponse.message && (
         <Alert variant="destructive">
           <AlertCircle className="h-4 w-4" />
           <AlertTitle>Error</AlertTitle>
-          <AlertDescription>{LoginResponse.message}</AlertDescription>
+          <AlertDescription>{loginResponse.message}</AlertDescription>
         </Alert>
       )}
       <div className="flex flex-col items-center gap-1">
@@ -148,7 +145,7 @@ export function LoginForm({
                   {dictionary.log_in.title}
                 </Button>
                 <Button variant="outline" className="w-full">
-                    {dictionary.log_in.with_google}
+                  {dictionary.log_in.with_google}
                 </Button>
               </div>
               <div className="mt-4 text-center text-sm">
