@@ -16,6 +16,10 @@ const customConfig: Config = {
     "^@/(.*)$": "<rootDir>/$1",
   },
   testMatch: ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
+  transformIgnorePatterns: [
+    // This pattern captures both node_modules ESM packages and any code using ES Module syntax
+    "/node_modules/(?!(lucide-react|react-daisyui|.*\\.mjs$))"
+  ],
 };
 
 export default createJestConfig(customConfig);
