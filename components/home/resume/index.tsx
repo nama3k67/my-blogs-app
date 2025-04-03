@@ -1,4 +1,5 @@
 import { ArrowDownIcon } from "lucide-react";
+import Link from "next/link";
 
 import BriefcaseIcon from "@/components/icons/briefcase";
 import { Button } from "@/components/ui/button";
@@ -41,10 +42,12 @@ export function Resume({ dictionary }: Props) {
           <RoleItem key={roleIndex} role={role} dictionary={dictionary} />
         ))}
       </ol>
-      <Button variant="secondary" className="group mt-6 w-full">
-        {dictionary.resume.download}
-        <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
-      </Button>
+      <Link download="Nam_Tran_Resume.pdf" href="/resume.pdf">
+        <Button variant="secondary" className="group mt-6 w-full">
+          {dictionary.resume.download}
+          <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
+        </Button>
+      </Link>
     </div>
   );
 }

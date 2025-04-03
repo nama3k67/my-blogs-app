@@ -62,9 +62,10 @@ export function middleware(request: NextRequest) {
   return response;
 }
 
+// Update the config at the bottom
 export const config = {
   matcher: [
-    // This regex excludes API routes, Next.js static files, favicon, and all common image file types
-    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:png|jpg|jpeg|gif|svg)$).*)",
+    // This regex excludes API routes, Next.js static files, favicon, PDFs, and all common image file types
+    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:png|jpg|jpeg|gif|svg|pdf)$).*)",
   ],
 };
